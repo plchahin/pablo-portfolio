@@ -1,0 +1,88 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: "site"
+    label: "Portfolio"
+    files:
+      - file: "content/site.json"
+        label: "Contenido del sitio"
+        name: "site"
+        fields:
+          - label: "Hero"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Nombre", name: "name", widget: "string" }
+              - { label: "Bio", name: "bio", widget: "text" }
+              - { label: "Foto", name: "photo", widget: "image" }
+
+          - label: "Texto animado (marquee)"
+            name: "marquee"
+            widget: "object"
+            fields:
+              - { label: "Texto", name: "text", widget: "string" }
+
+          - label: "Intro"
+            name: "intro"
+            widget: "object"
+            fields:
+              - { label: "Texto", name: "text", widget: "text" }
+
+          - label: "Proyectos destacados (video + texto)"
+            name: "stories"
+            widget: "list"
+            fields:
+              - { label: "Título", name: "title", widget: "string" }
+              - { label: "Descripción", name: "text", widget: "text" }
+              - { label: "Video (mp4, o link de YouTube/Vimeo embed)", name: "video", widget: "string", required: false }
+              - label: "Lado del video"
+                name: "mediaSide"
+                widget: "select"
+                options: ["left", "right"]
+
+          - label: "Frase destacada"
+            name: "statement"
+            widget: "object"
+            fields:
+              - { label: "Texto", name: "text", widget: "string" }
+
+          - label: "Galería de imágenes"
+            name: "gallery"
+            widget: "list"
+            field: { label: "Imagen", name: "image", widget: "image" }
+
+          - label: "Conceptos (carrusel)"
+            name: "concepts"
+            widget: "object"
+            fields:
+              - { label: "Título de sección", name: "heading", widget: "string" }
+              - label: "Proyectos"
+                name: "projects"
+                widget: "list"
+                fields:
+                  - { label: "Título", name: "title", widget: "string" }
+                  - { label: "Imagen", name: "image", widget: "image" }
+                  - { label: "Link", name: "link", widget: "string", required: false }
+
+          - label: "Proyectos finales (video + texto)"
+            name: "closingStories"
+            widget: "list"
+            fields:
+              - { label: "Título", name: "title", widget: "string" }
+              - { label: "Descripción", name: "text", widget: "text" }
+              - { label: "Video (mp4, o link de YouTube/Vimeo embed)", name: "video", widget: "string", required: false }
+
+          - label: "Footer / Contacto"
+            name: "footer"
+            widget: "object"
+            fields:
+              - { label: "Título", name: "heading", widget: "string" }
+              - { label: "Etiqueta contacto", name: "contactLabel", widget: "string" }
+              - { label: "Linkedin", name: "linkedin", widget: "string" }
+              - { label: "Instagram", name: "instagram", widget: "string" }
+              - { label: "Email", name: "email", widget: "string" }
