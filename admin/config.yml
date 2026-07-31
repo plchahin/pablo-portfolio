@@ -1,5 +1,6 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: plchahin/pablo-portfolio
   branch: main
 
 media_folder: "images"
