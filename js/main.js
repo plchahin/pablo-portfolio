@@ -60,10 +60,15 @@ async function render() {
     </section>`;
   });
 
-  // STATEMENT + GALLERY
+  // STATEMENT
   html += `
   <section class="statement-section">
     <div class="statement-text">${escapeHtml(data.statement.text)}</div>
+  </section>`;
+
+  // GALLERY
+  html += `
+  <section class="gallery-section">
     <div class="gallery-grid">
       ${data.gallery.map(src => `<figure><img src="${src}" loading="lazy" alt=""></figure>`).join('')}
     </div>
