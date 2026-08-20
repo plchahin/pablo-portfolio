@@ -2,10 +2,9 @@
 
 :root {
   --bg: #ffffff;
-  --bg-soft: #efeeeb;
+  --bg-soft: #fafafa;
   --ink: #0a0a0a;
-  --muted: #4a4a4a;
-  --max: 1400px;
+  --max: 1512px;
   --gap: 40px;
 }
 
@@ -16,24 +15,34 @@ html { scroll-behavior: smooth; }
 body {
   margin: 0;
   background: var(--bg);
-  color: var(--ink);
+  color: #000;
   font-family: 'Raleway', sans-serif;
-  font-weight: 400;
+  font-weight: 500;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
 
-h1, h2, h3, .display {
+/* headings: Squarespace fluid engine renders every heading in Space Grotesk 500
+   with -5% letter-spacing, scaling with viewport width (measured on the live
+   Squarespace site at 1512px viewport: h1 hero 246px, h1 story/statement 81px,
+   h2 card title 19.6px, h3 footer 45px, marquee 70px, concepts heading 54px) */
+h1, h2, h3, h4, .display {
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 500;
-  line-height: 0.95;
+  line-height: 1.03;
   margin: 0;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.05em;
+  color: #000;
 }
 
 a { color: inherit; }
 
-p { line-height: 1.5; }
+p {
+  line-height: 1.5;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: #000;
+}
 
 .wrap {
   max-width: var(--max);
@@ -52,14 +61,14 @@ p { line-height: 1.5; }
 
 /* HERO */
 .hero {
-  padding: 100px 40px 60px;
+  padding: 100px 40px 0;
   max-width: var(--max);
   margin: 0 auto;
 }
 
 .hero h1 {
-  font-size: clamp(48px, 11vw, 180px);
-  margin-bottom: 60px;
+  font-size: clamp(56px, 16.3vw, 260px);
+  margin-bottom: 0;
 }
 
 .hero-grid {
@@ -67,25 +76,29 @@ p { line-height: 1.5; }
   grid-template-columns: 1fr 1fr;
   gap: var(--gap);
   align-items: end;
+  margin-top: -40px;
+}
+
+.hero-bio {
+  padding-bottom: 40px;
 }
 
 .hero-bio p {
-  font-size: clamp(16px, 1.6vw, 23px);
+  font-size: clamp(15px, 1.3vw, 22px);
   max-width: 560px;
 }
 
 .hero-photo img {
   width: 100%;
   display: block;
-  filter: grayscale(1) contrast(1.05);
-  aspect-ratio: 4/5;
+  aspect-ratio: 690/807;
   object-fit: cover;
 }
 
 /* MARQUEE */
 .marquee-section {
   position: relative;
-  padding: 80px 0;
+  padding: 60px 0;
   overflow: hidden;
   border-top: 1px solid #eee;
   border-bottom: 1px solid #eee;
@@ -99,9 +112,10 @@ p { line-height: 1.5; }
 }
 
 .marquee-track span {
-  font-size: clamp(40px, 8vw, 110px);
+  font-size: clamp(32px, 4.66vw, 88px);
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 500;
+  letter-spacing: -0.05em;
   padding-right: 40px;
 }
 
@@ -110,25 +124,26 @@ p { line-height: 1.5; }
   to { transform: translateX(-50%); }
 }
 
-/* INTRO */
+/* INTRO — right column, left-aligned text (not centered/right-aligned) */
 .intro {
-  padding: 100px 40px;
-  max-width: 900px;
+  max-width: var(--max);
   margin: 0 auto;
-  text-align: right;
-  margin-left: auto;
-  margin-right: 40px;
+  padding: 90px 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 .intro p {
-  font-size: clamp(18px, 2vw, 26px);
-  color: var(--ink);
+  grid-column: 2;
+  font-size: clamp(15px, 1.3vw, 22px);
+  max-width: 560px;
+  text-align: left;
 }
 
 /* STORY BLOCKS */
 .story {
   display: grid;
-  grid-template-columns: minmax(240px, 420px) 1fr;
+  grid-template-columns: minmax(240px, 460px) 1fr;
   gap: 70px;
   max-width: var(--max);
   margin: 0 auto;
@@ -140,7 +155,7 @@ p { line-height: 1.5; }
 .story.media-right > * { direction: ltr; }
 
 .story .media {
-  aspect-ratio: 3/4.6;
+  aspect-ratio: 567/1000;
   width: 100%;
   background: #000;
   position: relative;
@@ -172,64 +187,54 @@ p { line-height: 1.5; }
 }
 
 .story h3 {
-  font-size: clamp(36px, 5.5vw, 90px);
+  font-size: clamp(34px, 5.38vw, 96px);
   margin-bottom: 24px;
 }
 
 .story p {
-  font-size: clamp(15px, 1.3vw, 18px);
-  color: var(--muted);
-  max-width: 460px;
+  font-size: clamp(15px, 1.3vw, 22px);
+  max-width: 500px;
 }
 
-/* wide story for closing section (title spans less) */
-.story.compact .media { aspect-ratio: 3/4.6; }
+.story.compact .media { aspect-ratio: 567/1000; }
 
-/* STATEMENT + GALLERY */
+/* STATEMENT — its own section, off-white bg, centered, same scale as story titles */
 .statement-section {
-  position: relative;
   background: var(--bg-soft);
-  padding: 140px 40px;
-  overflow: hidden;
+  padding: 130px 40px;
+  text-align: center;
 }
 
 .statement-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-  text-align: center;
-  font-size: clamp(30px, 4.8vw, 64px);
-  max-width: 620px;
-  background: var(--bg-soft);
-  padding: 20px;
-  pointer-events: none;
+  max-width: 900px;
+  margin: 0 auto;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  font-size: clamp(30px, 5.38vw, 96px);
+  line-height: 1.05;
+}
+
+/* GALLERY — full-bleed 2-column masonry, no gutters, natural image aspect */
+.gallery-section {
+  background: var(--bg);
 }
 
 .gallery-grid {
-  max-width: var(--max);
-  margin: 0 auto;
-  column-count: 3;
-  column-gap: 20px;
+  column-count: 2;
+  column-gap: 0;
 }
 
 .gallery-grid img {
   width: 100%;
   height: auto;
-  object-fit: cover;
   display: block;
 }
 
 .gallery-grid figure {
-  margin: 0 0 20px;
-  overflow: hidden;
+  margin: 0;
   break-inside: avoid;
 }
-
-.gallery-grid figure:nth-child(3n+1) { margin-top: 60px; }
-.gallery-grid figure:nth-child(3n+2) { margin-top: 0; }
-.gallery-grid figure:nth-child(3n) { margin-top: 100px; }
 
 /* CONCEPTS CAROUSEL */
 .concepts {
@@ -240,8 +245,7 @@ p { line-height: 1.5; }
 
 .concepts h2 {
   text-align: center;
-  font-size: clamp(28px, 4vw, 48px);
-  font-weight: 400;
+  font-size: clamp(28px, 3.58vw, 68px);
   margin-bottom: 60px;
 }
 
@@ -274,9 +278,7 @@ p { line-height: 1.5; }
 }
 
 .concept-card h4 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 500;
-  font-size: 22px;
+  font-size: clamp(16px, 1.3vw, 22px);
   margin: 20px 0 16px;
 }
 
@@ -312,10 +314,10 @@ p { line-height: 1.5; }
   font-size: 18px;
 }
 
-/* FOOTER */
+/* FOOTER — white background, black text (not inverted) */
 footer {
-  background: var(--ink);
-  color: #fff;
+  background: var(--bg);
+  color: #000;
   padding: 100px 40px 60px;
 }
 
@@ -328,34 +330,37 @@ footer {
 }
 
 footer h2 {
-  font-size: clamp(40px, 7vw, 90px);
-  color: #fff;
+  font-size: clamp(30px, 2.98vw, 56px);
+  color: #000;
 }
 
 footer .contact-label {
   font-size: 13px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #999;
+  color: #666;
   margin-bottom: 20px;
 }
 
 footer a, footer .email {
   display: block;
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  font-size: clamp(17px, 1.3vw, 22px);
   margin-bottom: 12px;
   text-decoration: underline;
+  color: #000;
 }
 
 @media (max-width: 860px) {
   .hero-grid, .footer-grid { grid-template-columns: 1fr; }
+  .hero-grid { margin-top: 20px; }
+  .intro { grid-template-columns: 1fr; }
+  .intro p { grid-column: 1; max-width: none; }
   .story { grid-template-columns: 1fr; gap: 30px; }
   .story .media { max-width: 320px; margin: 0 auto; }
   .story.media-right { direction: ltr; }
   .gallery-grid { column-count: 2; }
-  .gallery-grid figure:nth-child(n) { margin-top: 0; }
-  .statement-text { position: static; transform: none; margin: 40px auto; background: none; }
   .concept-card { flex: 0 0 260px; }
-  .intro { text-align: left; margin-right: auto; }
 }
